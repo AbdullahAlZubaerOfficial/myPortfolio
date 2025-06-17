@@ -28,7 +28,7 @@ export default function Hero() {
               {...fadeIn}
               transition={{ delay: 0.8 }}
             >
-              John Doe
+              Abdullah Al <span className='text-amber-500'>Zubaer</span>
             </motion.span>
           </motion.h1>
           <motion.p 
