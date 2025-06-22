@@ -121,8 +121,8 @@ export default function About() {
             variants={fadeInUp}
             {...cardHoverSmall}
           >
-            <h3 className="text-xl font-semibold mb-2">Senior Full Stack Developer</h3>
-            <p className="text-primary mb-2">Company Name • 2020 - Present</p>
+            <h3 className="text-xl font-semibold mb-2">Frontend Developer</h3>
+            <p className="text-primary mb-2">WebTalProm • 2024</p>
             <ul className="text-secondary list-disc list-inside space-y-2">
               <li>Led development of multiple web applications using React and Node.js</li>
               <li>Implemented CI/CD pipelines reducing deployment time by 50%</li>
@@ -136,7 +136,7 @@ export default function About() {
             {...cardHoverSmall}
           >
             <h3 className="text-xl font-semibold mb-2">Full Stack Developer</h3>
-            <p className="text-primary mb-2">Previous Company • 2018 - 2020</p>
+            <p className="text-primary mb-2">Own Project Work - 2025</p>
             <ul className="text-secondary list-disc list-inside space-y-2">
               <li>Developed and maintained RESTful APIs</li>
               <li>Built responsive user interfaces with modern JavaScript frameworks</li>
@@ -169,7 +169,7 @@ export default function About() {
             {...cardHoverSmall}
           >
             <h3 className="text-xl font-semibold mb-2">Bachelor of Science in Computer Science</h3>
-            <p className="text-primary mb-2">University Name • 2014 - 2018</p>
+            <p className="text-primary mb-2">Dhaka City College • 2024 </p>
             <p className="text-secondary">
               Graduated with honors. Focused on software engineering and web development.
             </p>
