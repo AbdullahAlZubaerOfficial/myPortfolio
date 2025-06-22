@@ -1,14 +1,14 @@
 'use client'
 
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { fadeInUp, fadeIn, scaleIn } from '@/utils/animations';
 
 export default function Hero() {
   return (
-    <section className="py-28">
+    <section className="py-16 md:py-28"> {/* Changed from py-28 to responsive padding */}
       <div className="container max-w-7xl mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <motion.div 
@@ -16,7 +16,7 @@ export default function Hero() {
             {...scaleIn}
             transition={{ delay: 0.2 }}
           >
-            <Image src="/profile.avif" alt="Profile" width={100} height={100} className="rounded-full mb-4 w-32 h-32 object-cover ring-2 ring-primary" />
+            <img src="/profile.jpg" alt="Profile" width={100} height={100} className="rounded-full mb-4 w-32 h-32 object-cover ring-2 ring-primary" />
           </motion.div>
           <motion.h1 
             className="text-4xl md:text-6xl font-bold mb-6"
@@ -106,4 +106,4 @@ export default function Hero() {
       </div>
     </section>
   );
-} 
+}

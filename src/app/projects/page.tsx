@@ -1,7 +1,7 @@
 'use client'
 
 import { projects } from '@/contents/projects'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer, cardHoverSmall } from '@/utils/animations'
@@ -44,7 +44,7 @@ export default function Projects() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <Image
+              <img
                 src={project.image}
                 alt={project.title}
                 className="object-cover w-full h-full"

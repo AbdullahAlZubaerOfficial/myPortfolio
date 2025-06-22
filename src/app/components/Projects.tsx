@@ -1,7 +1,7 @@
 'use client'
 
 import { projects } from '@/contents/projects'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer, cardHoverSmall } from '@/utils/animations'
@@ -31,13 +31,12 @@ export default function Projects() {
               {...cardHoverSmall}
             >
               <div className="relative aspect-video mb-4 rounded-lg overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
+                <img
+  src={project.image}
+  alt={project.title}
+  className="object-cover w-full h-64"
+/>
+
               </div>
               <motion.h3 
                 className="text-xl font-semibold mb-2"
@@ -97,7 +96,7 @@ export default function Projects() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <FaExternalLinkAlt className="h-5 w-5" />
-                  <span>Live Demo</span>
+                  <span> <a href='https://bistro-boss-f9cc6.web.app/'>Live Demo</a> </span>
                 </motion.a>
               </motion.div>
             </motion.article>

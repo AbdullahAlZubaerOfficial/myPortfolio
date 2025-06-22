@@ -2,12 +2,13 @@
   "name": "portfolio-project-2",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+ "scripts": {
+  "dev": "next dev --turbopack",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "export": "next export"
+},
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "framer-motion": "^12.9.7",
