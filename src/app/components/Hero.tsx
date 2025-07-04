@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import CodeforcesIcon from './CodeforcesIcon'
 import { LiaLinkedin } from 'react-icons/lia'
 
-const name = "Abdullah Al Zubaer"
+// const name = "Abdullah Al Zubaer"
 
 export default function Hero() {
   return (
