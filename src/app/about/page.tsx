@@ -15,8 +15,8 @@ import {
   SiAmazon,
   SiCircleci,
 } from 'react-icons/si'
-import { motion, useAnimation } from 'framer-motion'
-import { useEffect } from 'react'
+import { motion, useAnimation, useInView } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 import {
   fadeInUp,
   fadeInDown,
@@ -43,6 +43,8 @@ const skills = [
 
 export default function About() {
   const controls = useAnimation()
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   useEffect(() => {
     controls.start({
@@ -55,15 +57,21 @@ export default function About() {
     })
   }, [controls])
 
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible")
+    }
+  }, [isInView, controls])
+
   return (
-    <div className="container max-w-7xl mx-auto py-12">
-      <motion.h1 className="text-4xl font-bold mb-8 text-center" {...fadeInDown}>
+    <div className="container max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <motion.h1 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white" {...fadeInDown}>
         About Me
       </motion.h1>
 
       {/* Bio Section */}
       <motion.section className="mb-16" {...fadeInUp}>
-        <p className="text-lg text-secondary max-w-3xl mx-auto text-center">
+        <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-center">
           I&apos;m a passionate Full Stack Developer with expertise in building modern web applications.
           With a strong foundation in both frontend and backend technologies, I create seamless
           user experiences and robust server-side solutions.
@@ -72,7 +80,7 @@ export default function About() {
 
       {/* Rotating Skills Circle Section */}
       <motion.section className="mb-16" {...fadeIn} transition={{ delay: 0.1 }}>
-        <motion.h2 className="section-title" {...fadeInUp}>
+        <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white" {...fadeInUp}>
           Technical Expertise
         </motion.h2>
 
@@ -104,7 +112,7 @@ export default function About() {
             return (
               <motion.div
                 key={name}
-                className="absolute h-12 w-12 flex items-center justify-center rounded-full bg-white dark:bg-dark/50 shadow-md cursor-pointer"
+                className="absolute h-12 w-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md cursor-pointer"
                 initial={{
                   x: 0,
                   y: 0,
@@ -138,7 +146,7 @@ export default function About() {
 
       {/* Skills Grid Section */}
       <motion.section className="mb-16" {...fadeIn} transition={{ delay: 0.2 }}>
-        <motion.h2 className="section-title" {...fadeInUp}>
+        <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white" {...fadeInUp}>
           Skills
         </motion.h2>
         <motion.div
@@ -147,10 +155,10 @@ export default function About() {
           initial="initial"
           animate="animate"
         >
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
+          <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
             <FaCode className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Frontend</h3>
-            <ul className="text-secondary space-y-2">
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Frontend</h3>
+            <ul className="text-gray-600 dark:text-gray-300 space-y-2">
               <li>React / Next.js</li>
               <li>TypeScript</li>
               <li>Tailwind CSS</li>
@@ -158,10 +166,10 @@ export default function About() {
             </ul>
           </motion.div>
 
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
+          <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
             <FaLaptopCode className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Backend</h3>
-            <ul className="text-secondary space-y-2">
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Backend</h3>
+            <ul className="text-gray-600 dark:text-gray-300 space-y-2">
               <li>Node.js</li>
               <li>Express</li>
               <li>PostgreSQL</li>
@@ -169,13 +177,10 @@ export default function About() {
             </ul>
           </motion.div>
 
-
-          
-
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
+          <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
             <FaGraduationCap className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Tools & Others</h3>
-            <ul className="text-secondary space-y-2">
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Tools & Others</h3>
+            <ul className="text-gray-600 dark:text-gray-300 space-y-2">
               <li>Git / GitHub</li>
               <li>Docker</li>
               <li>AWS</li>
@@ -185,125 +190,159 @@ export default function About() {
         </motion.div>
       </motion.section>
 
-<div className='flex flex-col md:flex-row gap-8'>
-  
-<div>
-    {/* Achievement Section (Placeholder) */}
- <motion.section className="mb-16" {...fadeIn} transition={{ delay: 0.5 }}>
-  <motion.h2 className="section-title font-bold text-3xl" {...fadeInUp}>
-    Achievements
-  </motion.h2>
-  <motion.div
-    className="max-w-3xl mx-auto p-6 rounded-lg bg-white dark:bg-dark/50 shadow-md"
-    variants={fadeInUp}
-    {...cardHoverSmall}
-  >
-    {/* Example placeholder: */}
-    <img src="/achievement1.jpg" alt="Achievement" className="mb-4 rounded-md" />
-    <p className="text-secondary text-center text-xl font-extrabold">
-     <span className='w-[40px]'> Certificate of achievement</span>: The{" "}
-      <span className="text-blue-600 font-semibold text-xl font-extrabold">certificate</span> is proudly awarded to{" "}
-      <span className="text-purple-600 font-semibold text-xl font-extrabold">Abdullah Al Zubaer</span> for stepping into the{" "}
-      <span className="text-green-600 font-semibold text-xl font-extrabold">tech industry</span> as a proud member of the{" "}
-      <span className="text-yellow-500 font-semibold text-xl font-extrabold">Programming Hero Association</span>. Your journey from{" "}
-      <span className="text-pink-600 font-semibold text-xl font-extrabold">learner</span> to{" "}
-      <span className="text-red-600 font-semibold text-xl font-extrabold">professional</span> reflects{" "}
-      <span className="text-indigo-600 font-semibold text-xl font-extrabold">passion</span>,{" "}
-      <span className="text-teal-600 font-semibold text-xl font-extrabold">commitment</span>, and{" "}
-      <span className="text-orange-500 font-semibold text-xl font-extrabold">impact</span>. We are proud to celebrate your success. Presented by Programming Hero Team.
-      <br />
-      <br />
-      <span className="italic text-gray-600 text-xl font-extrabold">
-        This certificate is awarded to those who have been{" "}
-        <span className="text-green-700 font-semibold text-xl font-extrabold">hired</span> or work in the{" "}
-        <span className="text-blue-700 font-semibold text-xl font-extrabold">freelance market</span> as a{" "}
-        <span className="text-red-700 font-semibold text-xl font-extrabold">professional</span>.
-      </span>
-    </p>
-  </motion.div>
-</motion.section>
-</div>
+      <div ref={ref} className="flex flex-col md:flex-row gap-8">
+        {/* Achievement Section */}
+        <div className="flex-1">
+          <motion.section className="mb-16"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.6,
+                  ease: "easeOut"
+                }
+              }
+            }}
+          >
+            <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white" {...fadeInUp}>
+              Achievements
+            </motion.h2>
+            <motion.div
+              className="max-w-3xl mx-auto p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              {...cardHoverSmall}
+            >
+              <img src="/achievement1.jpg" alt="Achievement" className="mb-4 rounded-md w-full h-auto" />
+              <p className="text-gray-600 dark:text-gray-300 text-center">
+                <span className="font-semibold">Certificate of achievement</span>: The{" "}
+                <span className="text-blue-600 dark:text-blue-400 font-semibold">certificate</span> is proudly awarded to{" "}
+                <span className="text-purple-600 dark:text-purple-400 font-semibold">Abdullah Al Zubaer</span> for stepping into the{" "}
+                <span className="text-green-600 dark:text-green-400 font-semibold">tech industry</span> as a proud member of the{" "}
+                <span className="text-yellow-500 dark:text-yellow-400 font-semibold">Programming Hero Association</span>. Your journey from{" "}
+                <span className="text-pink-600 dark:text-pink-400 font-semibold">learner</span> to{" "}
+                <span className="text-red-600 dark:text-red-400 font-semibold">professional</span> reflects{" "}
+                <span className="text-indigo-600 dark:text-indigo-400 font-semibold">passion</span>,{" "}
+                <span className="text-teal-600 dark:text-teal-400 font-semibold">commitment</span>, and{" "}
+                <span className="text-orange-500 dark:text-orange-400 font-semibold">impact</span>. We are proud to celebrate your success. Presented by Programming Hero Team.
+                <br />
+                <br />
+                <span className="italic text-gray-500 dark:text-gray-400">
+                  This certificate is awarded to those who have been{" "}
+                  <span className="text-green-700 dark:text-green-300 font-semibold">hired</span> or work in the{" "}
+                  <span className="text-blue-700 dark:text-blue-300 font-semibold">freelance market</span> as a{" "}
+                  <span className="text-red-700 dark:text-red-300 font-semibold">professional</span>.
+                </span>
+              </p>
+            </motion.div>
+          </motion.section>
+        </div>
 
+        <div className="flex-1">
+          {/* Experience Section */}
+          <motion.section className="mb-16"
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.6,
+                  ease: "easeOut",
+                  delay: 0.1
+                }
+              }
+            }}
+          >
+            <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white" {...fadeInUp}>
+              Experience
+            </motion.h2>
+            <motion.div
+              className="max-w-3xl mx-auto space-y-8"
+              variants={staggerContainer}
+              initial="initial"
+              animate={isInView ? "animate" : "initial"}
+            >
+              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Frontend Developer</h3>
+                <p className="text-primary mb-2">InnoBugz Solutions • 2025</p>
+                <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
+                   <li>🚀 Led development of multiple web applications using React and Node.js</li>
+<li>⚙️ Implemented CI/CD pipelines reducing deployment time by 50%</li>
+                </ul>
+              </motion.div>
 
-<div>
-  
-      {/* Experience Section */}
-      <motion.section className="mb-16" {...fadeIn} transition={{ delay: 0.4 }}>
-        <motion.h2 className="section-title" {...fadeInUp}>
-          Experience
-        </motion.h2>
-        <motion.div
-          className="max-w-3xl mx-auto space-y-8"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
-            <h3 className="text-xl font-semibold mb-2">Frontend Developer</h3>
-            <p className="text-primary mb-2">InnoBugz Solutions • 2025</p>
-            <ul className="text-secondary list-disc list-inside space-y-2">
-              <li>Led development of multiple web applications using React and Node.js</li>
-              <li>Implemented CI/CD pipelines reducing deployment time by 50%</li>
-            </ul>
-          </motion.div>
+              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Full Stack Developer</h3>
+                <p className="text-primary mb-2">Own Project Work - 2024</p>
+                <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
+                   <li>🔧 Developed and maintained RESTful APIs</li> 
+<li>💻 Built responsive user interfaces with modern JavaScript frameworks</li> 
+<li>⚡ Optimized database queries improving performance by 40%</li>
+                </ul>
+              </motion.div>
+              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Web Development Completed (Batch 9)</h3>
+                <p className="text-primary mb-2">Programming Hero</p>
+                <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
+                    <li>🖥️ Developed full-stack apps using MERN (MongoDB, Express.js, React.js, Node.js)</li> 
+<li>🔐 Handled authentication with Firebase & JWT</li> 
+<li>🌐 Built REST APIs and responsive UIs with Tailwind CSS</li>
 
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
-            <h3 className="text-xl font-semibold mb-2">Full Stack Developer</h3>
-            <p className="text-primary mb-2">Own Project Work - 2024</p>
-            <ul className="text-secondary list-disc list-inside space-y-2">
-              <li>Developed and maintained RESTful APIs</li>
-              <li>Built responsive user interfaces with modern JavaScript frameworks</li>
-              <li>Optimized database queries improving performance by 40%</li>
-            </ul>
-          </motion.div>
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
-            <h3 className="text-xl font-semibold mb-2">Web Development Completed (Batch 9) </h3>
-            <p className="text-primary mb-2">Programming Hero</p>
-            <ul className="text-secondary list-disc list-inside space-y-2">
-             <li>Developed full-stack apps using MERN (MongoDB, Express.js, React.js, Node.js)</li>
-<li>Handled authentication with Firebase & JWT</li>
-<li>Built REST APIs and responsive UIs with Tailwind CSS</li>
-
-            </ul>
-          </motion.div>
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
-            <h3 className="text-xl font-semibold mb-2">Data Structures and Algorithms and ML (Batch 7)</h3>
-            <p className="text-primary mb-2">Phitron</p>
-            <ul className="text-secondary list-disc list-inside space-y-2">
-             <ul className="list-disc ml-5 space-y-2">
-  <li>Gained solid understanding of C and C++, including procedural and object-oriented concepts 💡</li>
+                </ul>
+              </motion.div>
+              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Data Structures and Algorithms and ML (Batch 7)</h3>
+                <p className="text-primary mb-2">Phitron</p>
+                <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
+                  <li>Gained solid understanding of C and C++, including procedural and object-oriented concepts 💡</li>
   <li>Mastered data structures and algorithms (DSA) with C++: linked list, queue, tree, graph, recursion, sorting, and searching 🔍🌲</li>
   <li>Developed strong problem-solving skills through regular assignments and contests 💪🧠</li>
   <li>Currently learning Machine Learning fundamentals using Python and relevant libraries 🤖📊</li>
-</ul>
+                </ul>
+              </motion.div>
+            </motion.div>
+          </motion.section>
 
-            </ul>
-          </motion.div>
-        </motion.div>
-      </motion.section>
-
-         {/* Education Section */}
-      <motion.section {...fadeIn} transition={{ delay: 0.6 }}>
-        <motion.h2 className="section-title" {...fadeInUp}>
-          Education
-        </motion.h2>
-        <motion.div className="max-w-3xl mx-auto" variants={staggerContainer} initial="initial" animate="animate">
-          <motion.div className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
-            <h3 className="text-xl font-semibold mb-2">Bachelor of Science in Computer Science</h3>
-            <p className="text-primary mb-2">Dhaka City College • 2024 </p>
-            <p className="text-secondary">
-              Graduated with honors. Focused on software engineering and web development.
-            </p>
-          </motion.div>
-        </motion.div>
-      </motion.section>
-
-</div>
-</div>
-    
-   
+          {/* Education Section */}
+          <motion.section
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.6,
+                  ease: "easeOut",
+                  delay: 0.2
+                }
+              }
+            }}
+          >
+            <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white" {...fadeInUp}>
+              Education
+            </motion.h2>
+            <motion.div className="max-w-3xl mx-auto" variants={staggerContainer} initial="initial" animate={isInView ? "animate" : "initial"}>
+              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Bachelor of Science in Computer Science</h3>
+                <p className="text-primary mb-2">Dhaka City College • 2024</p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Graduated with honors. Focused on software engineering and web development.
+                </p>
+              </motion.div>
+            </motion.div>
+          </motion.section>
+        </div>
+      </div>
     </div>
   )
 }
-
-
