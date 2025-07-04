@@ -87,7 +87,7 @@ export default function About() {
         <motion.div
           className="relative h-96 w-full flex items-center justify-center my-12"
           initial="hidden"
-          animate="visible"
+          
           animate={controls}
           style={{ originX: "50%", originY: "50%" }}
         >
