@@ -3,11 +3,19 @@ import { Project } from "@/types";
 
 export const projects: Project[] = [
     {
+        title: 'Chat Application',
+        description: 'A real-time chat application using WebSocket technology.',
+        technologies: ['React', 'Node.js', 'Socket.io'],
+        githubLink: 'https://github.com/AbdullahAlZubaerOfficial/Real-Time-Chat-App',
+        demoLink: 'https://real-time-chat-app-pi-five.vercel.app/login',
+        image: '/projects/chat-app.png',
+      },
+    {
         title: 'E-commerce Platform',
         description: 'A full-stack e-commerce platform built with Next.js, TypeScript, and Tailwind CSS.',
         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Stripe'],
         githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
+        demoLink: 'https://bistro-boss-f9cc6.web.app/',
         image: '/projects/e-commerce-website.png',
       },
       {
@@ -15,7 +23,7 @@ export const projects: Project[] = [
         description: 'A collaborative task management application with real-time updates.',
         technologies: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
         githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
+        demoLink: 'https://www.meistertask.com/',
         image: '/projects/task-manager.webp',
       },
       {
@@ -42,14 +50,7 @@ export const projects: Project[] = [
         demoLink: 'https://demo.com',
         image: '/projects/weather-app.png',
       },
-      {
-        title: 'Chat Application',
-        description: 'A real-time chat application using WebSocket technology.',
-        technologies: ['React', 'Node.js', 'Socket.io'],
-        githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
-        image: '/projects/chat-app.png',
-      },
+    
       {
         title: 'Recipe Finder',
         description: 'A recipe search application using the Edamam API.',

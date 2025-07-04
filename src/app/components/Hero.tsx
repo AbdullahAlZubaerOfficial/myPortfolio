@@ -1,121 +1,142 @@
 'use client'
 
-import Link from 'next/link';
-// import Image from 'next/image';
-import { FaGithub, FaLinkedin, } from 'react-icons/fa';
-import { motion } from 'framer-motion';
-import { fadeInUp, fadeIn, scaleIn } from '@/utils/animations';
-import CodeforcesIcon from './CodeforcesIcon';
+import Link from 'next/link'
+import { FaGithub } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import CodeforcesIcon from './CodeforcesIcon'
+import { LiaLinkedin } from 'react-icons/lia'
+
+const name = "Abdullah Al Zubaer"
 
 export default function Hero() {
-
-  
-
   return (
-    <section className="py-16 md:py-28"> {/* Changed from py-28 to responsive padding */}
+    <section className="py-16 md:py-28 bg-gray-100 dark:bg-gray-900">
       <div className="container max-w-7xl mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div 
-            className='flex justify-center items-center mb-4'
-            {...scaleIn}
-            transition={{ delay: 0.2 }}
+
+          {/* Profile Image with Graduate Badge */}
+          <div className="relative inline-block mb-4">
+            <img
+              src="/profile1.jpg"
+              alt="Profile"
+              className="rounded-full w-56 h-56 object-cover ring-2 ring-primary shadow-lg"
+            />
+            <motion.img
+              src="/projects/graduate.png"
+              alt="Graduate Badge"
+              className="absolute top-0 right-0 w-20 h-20 rounded-full shadow-md"
+              animate={{ rotate: 360 }}
+              transition={{
+                repeat: Infinity,
+                duration: 6,
+                ease: "linear",
+              }}
+            />
+          </div>
+
+          {/* Always Animated Name */}
+        <div className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white flex flex-wrap justify-center gap-1 text-center">
+  {"Abdullah Al".split("").map((char, index) => (
+    <motion.span
+      key={`top-${index}`}
+      className={`${char === "A" || char === "l" ? "text-primary" : ""}`}
+      initial={{ opacity: 0.3, y: -20 }}
+      animate={{ opacity: [0.3, 1, 0.3], y: [-20, 0, -20] }}
+      transition={{
+        repeat: Infinity,
+        duration: 2,
+        delay: index * 0.2,
+        ease: "easeInOut",
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  ))}
+
+  <div className="w-full md:w-auto block md:inline"></div>
+
+  {" Zubaer".split("").map((char, index) => (
+    <motion.span
+      key={`bottom-${index}`}
+      className={char === "Z" ? "text-amber-500" : ""}
+      initial={{ opacity: 0.3, y: -20 }}
+      animate={{ opacity: [0.3, 1, 0.3], y: [-20, 0, -20] }}
+      transition={{
+        repeat: Infinity,
+        duration: 2,
+        delay: (index + 10) * 0.2,
+        ease: "easeInOut",
+      }}
+    >
+      {char === " " ? "\u00A0" : char}
+    </motion.span>
+  ))}
+</div>
+
+
+          {/* Animated Role Text */}
+          <motion.div
+            className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 whitespace-nowrap"
+            animate={{ x: ['0%', '-10%', '0%'] }}
+            transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
           >
-            <img src="/profile1.jpg" alt="Profile" width={100} height={100} className="rounded-full mb-4 w-32 h-32 object-cover ring-2 ring-primary" />
+            <span className="block">🚀 Mern Stack Developer</span>
+            <span className="block">💻 Competitive Programmer</span>
+            <span className="block">⚡ JavaScript Specialist</span>
           </motion.div>
-          <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-6"
-            {...fadeInUp}
-            transition={{ delay: 0.3 }}
+
+          {/* Social Links */}
+          <motion.div
+            className="flex justify-center items-center gap-6 mb-10 flex-wrap whitespace-nowrap"
+            animate={{ x: ['0%', '8%', '0%'] }}
+            transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
           >
-            Hi, I&apos;m <motion.span 
-              className="text-primary"
-              {...fadeIn}
-              transition={{ delay: 0.8 }}
-            >
-              Abdullah Al <span className='text-amber-500'>Zubaer</span>
-            </motion.span>
-          </motion.h1>
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8"
-            {...fadeInUp}
-            transition={{ delay: 0.4 }}
-          >
-            Frontend Developer | Competitive Programmer | Aspiring Data Scientist and FULL STACK Developer |
-          </motion.p>
-          <motion.div 
-            className="flex justify-center space-x-4 mb-8"
-            {...fadeInUp}
-            transition={{ delay: 0.5 }}
-          >
-            <motion.a
-              href="https://github.com/AbdullahAlZubaerOfficial"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <FaGithub />
-            </motion.a>
-            <motion.a
+            <a
               href="https://www.linkedin.com/in/abdullah-al-zubaer-309065292/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-2xl text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors text-lg"
             >
-              <FaLinkedin />
-            </motion.a>
-            <motion.a
-              href="https://twitter.com"
+              <LiaLinkedin className="text-3xl" />
+              LinkedIn
+            </a>
+
+            <a
+              href="https://github.com/AbdullahAlZubaerOfficial"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-2xl text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
+              className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary transition-colors text-lg"
             >
-              
-  <div className="text-blue-700 text-3xl ml-4">
-      <CodeforcesIcon className="w-8 h-8 inline-block mr-2" />
-     <a href='https://codeforces.com/profile/zubaerislam703'>Codeforces</a> 
-    </div>
-            </motion.a>
+              <FaGithub className="text-2xl" />
+              GitHub
+            </a>
+
+            <a
+              href="https://codeforces.com/profile/zubaerislam703"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-primary transition-colors text-lg"
+            >
+              <CodeforcesIcon className="w-6 h-6" />
+              Codeforces
+            </a>
           </motion.div>
-          <motion.div 
-            className="flex flex-col md:flex-row justify-center gap-4"
-            {...fadeInUp}
-            transition={{ delay: 0.6 }}
+
+          {/* View Projects Button */}
+          <motion.div
+            className="flex justify-center whitespace-nowrap"
+            animate={{ x: ['0%', '-8%', '0%'] }}
+            transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
           >
-
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <Link
+              href="/projects"
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg transition-colors block w-full md:w-auto text-center"
             >
-
-
-
-              <Link
-                href="/projects"
-                className="bg-primary inline-block w-full md:w-auto text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                View Projects
-              </Link>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                href="/contact"
-                className=" inline-block w-full bg-gray-500  md:w-auto text-gray-800 dark:text-white px-8 py-3 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-              >
-                Contact Me
-              </Link>
-            </motion.div>
+              View Projects
+            </Link>
           </motion.div>
         </div>
       </div>
     </section>
-  );
+  )
 }

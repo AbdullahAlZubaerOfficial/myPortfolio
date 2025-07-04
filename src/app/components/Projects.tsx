@@ -1,108 +1,144 @@
 'use client'
 
 import { projects } from '@/contents/projects'
-// import Image from 'next/image'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer, cardHoverSmall } from '@/utils/animations'
+import { staggerContainer } from '@/utils/animations'
+import { useState } from 'react'
+
+const slideDownLoop = {
+  hidden: { y: -20, opacity: 1 },
+  show: {
+    y: [-20, 20, -20],
+    opacity: 1,
+    transition: {
+      repeat: Infinity,
+      duration: 8,
+      ease: 'easeInOut',
+    },
+  },
+}
 
 export default function Projects() {
+  const [activeIndex, setActiveIndex] = useState(null)
+
   return (
     <section className="py-20">
       <div className="container max-w-7xl mx-auto px-4">
-        <motion.h2 
+
+        {/* Section Title */}
+        <motion.h2
           className="text-3xl font-bold mb-12 text-center"
-          {...fadeInUp}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          Featured Projects
+          🚀 Featured Projects
         </motion.h2>
 
-        <motion.div 
+        {/* Project Grid */}
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
           variants={staggerContainer}
-          initial="initial"
-          animate="animate"
+          initial="hidden"
+          animate="show"
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <motion.article
               key={project.title}
-              className="bg-white dark:bg-dark/50 rounded-lg shadow-md p-6"
-              variants={fadeInUp}
-              {...cardHoverSmall}
+              className={`rounded-xl p-6 transition-shadow duration-300 cursor-pointer
+                ${
+                  activeIndex === index
+                    ? 'bg-gradient-to-r from-primary/90 via-primary/70 to-primary/90 text-white shadow-2xl'
+                    : 'bg-white dark:bg-dark/50 shadow-lg hover:bg-gradient-to-r hover:from-primary/20 hover:via-primary/10 hover:to-primary/20 hover:shadow-xl text-gray-900 dark:text-gray-100'
+                }
+              `}
+              variants={slideDownLoop}
+              transition={{
+                repeat: Infinity,
+                duration: 8,
+                ease: 'easeInOut',
+                delay: index * 0.5,
+              }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+              onClick={() => setActiveIndex(index === activeIndex ? null : index)}
             >
+              {/* Project Image */}
               <div className="relative aspect-video mb-4 rounded-lg overflow-hidden">
                 <img
-  src={project.image}
-  alt={project.title}
-  className="object-cover w-full h-64"
-/>
-
+                  src={project.image}
+                  alt={project.title}
+                  className={`object-cover w-full h-64 transition-transform duration-300 hover:scale-105
+                    ${activeIndex === index ? 'brightness-90' : ''}
+                  `}
+                />
               </div>
-              <motion.h3 
-                className="text-xl font-semibold mb-2"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {project.title}
-              </motion.h3>
-              <motion.p 
-                className="text-gray-600 dark:text-gray-300 mb-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                {project.description}
-              </motion.p>
-              <motion.div 
-                className="flex flex-wrap gap-2 mb-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
+
+              {/* Title */}
+              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+
+              {/* Description */}
+              <p className="mb-4">{project.description}</p>
+
+              {/* Technologies */}
+              <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.map((tech) => (
-                  <motion.span
+                  <span
                     key={tech}
-                    className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
+                    className={`px-3 py-1 rounded-full text-sm
+                      ${
+                        activeIndex === index
+                          ? 'bg-white text-primary'
+                          : 'bg-primary/10 text-primary'
+                      }
+                    `}
                   >
                     {tech}
-                  </motion.span>
+                  </span>
                 ))}
-              </motion.div>
-              <motion.div 
-                className="flex gap-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                <motion.a
+              </div>
+
+              {/* Links */}
+              <div className="flex gap-4">
+                <a
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-secondary hover:text-primary transition-colors"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ scale: 0.95 }}
+                  className={`flex items-center gap-2 transition-colors
+                    ${
+                      activeIndex === index
+                        ? 'text-white hover:text-primary/80'
+                        : 'text-secondary hover:text-primary'
+                    }
+                  `}
                 >
                   <FaGithub className="h-5 w-5" />
                   <span>Code</span>
-                </motion.a>
-                <motion.a
+                </a>
+
+                <a
                   href={project.demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-secondary hover:text-primary transition-colors"
-                  whileHover={{ x: 5 }}
-                  whileTap={{ scale: 0.95 }}
+                  className={`flex items-center gap-2 transition-colors
+                    ${
+                      activeIndex === index
+                        ? 'text-white hover:text-primary/80'
+                        : 'text-secondary hover:text-primary'
+                    }
+                  `}
                 >
                   <FaExternalLinkAlt className="h-5 w-5" />
-                  <span> <a href='https://bistro-boss-f9cc6.web.app/'>Live Demo</a> </span>
-                </motion.a>
-              </motion.div>
+                  <span>Live Demo</span>
+                </a>
+              </div>
             </motion.article>
           ))}
         </motion.div>
       </div>
     </section>
   )
-} 
+}
