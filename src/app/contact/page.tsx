@@ -13,13 +13,13 @@ interface FormData {
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
 // Animations
-const slideFromLeft = {
+const slideFromLeft : Variants = {
   initial: { x: -120, opacity: 0 },
   animate: {
     x: 0,
     opacity: 1,
     transition: {
-      type: 'spring',
+      type: "spring", 
       stiffness: 30,     // very soft
       damping: 20,       // more smooth stop
       duration: 2        // total 2s
