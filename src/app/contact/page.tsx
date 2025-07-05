@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
-import { motion } from 'framer-motion'
+import { motion,Variants,easeInOut } from 'framer-motion'
 
 interface FormData {
   name: string
@@ -41,14 +41,14 @@ const slideFromRight = {
   }
 }
 
-const fadeInUp = {
+const fadeInUp : Variants = {
   initial: { y: 40, opacity: 0 },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 2,
-      ease: 'easeOut'
+      ease: easeInOut
     }
   }
 }
