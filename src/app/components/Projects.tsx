@@ -3,11 +3,11 @@
 import Image from 'next/image';
 import { projects } from '@/contents/projects'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import { motion } from 'framer-motion'
+import { motion,Variants,easeInOut } from 'framer-motion'
 import { staggerContainer } from '@/utils/animations'
 import { useState } from 'react'
 
-const slideDownLoop = {
+const slideDownLoop:Variants = {
   hidden: { y: -20, opacity: 1 },
   show: {
     y: [-20, 20, -20],
@@ -15,7 +15,7 @@ const slideDownLoop = {
     transition: {
       repeat: Infinity,
       duration: 8,
-      ease: 'easeInOut',
+      ease:easeInOut,
     },
   },
 }
