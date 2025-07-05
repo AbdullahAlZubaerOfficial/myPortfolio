@@ -1,6 +1,6 @@
 'use client'
 
-
+import Image from 'next/image';
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import { motion } from 'framer-motion'
@@ -17,11 +17,14 @@ export default function Hero() {
 
           {/* Profile Image with Graduate Badge */}
           <div className="relative inline-block mb-4">
-            <img
-              src="/profile1.jpg"
-              alt="Profile"
-              className="rounded-full w-56 h-56 object-cover ring-2 ring-primary shadow-lg"
-            />
+           <Image
+  src="/profile1.jpg"
+  alt="Profile"
+  width={224}  // w-56 = 14rem = 224px (56×4)
+  height={224} // h-56 = 14rem = 224px
+  className="rounded-full object-cover ring-2 ring-primary shadow-lg"
+  unoptimized={true} // Required for static export
+/>
             <motion.img
               src="/projects/graduate.png"
               alt="Graduate Badge"

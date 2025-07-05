@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image';
 import { FaCode, FaLaptopCode, FaGraduationCap } from 'react-icons/fa'
 import {
   SiReact,
@@ -234,13 +235,16 @@ export default function About() {
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         {...cardHoverSmall} // contains whileHover and transition
       >
-        <div className="relative w-full h-64 mb-4 rounded-md overflow-hidden">
-       <img
-      src="/achievement1.jpg"
-      alt='Achievement'
-      className="rounded-md w-[500px] h-[500px] pb-[100px]"
-    />
-        </div>
+      
+         <Image
+        src="/achievement1.jpg"
+        alt="Our Achievement"
+        width={500}
+        height={300}
+         className="mb-4 rounded-md w-full h-auto" 
+        unoptimized={true}
+      />
+       
 
         <p className="text-gray-600 dark:text-gray-300 text-center">
           <span className="font-semibold">Certificate of achievement</span>: The{' '}

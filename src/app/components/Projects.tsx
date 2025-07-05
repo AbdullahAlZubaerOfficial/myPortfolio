@@ -1,6 +1,6 @@
 'use client'
 
-
+import Image from 'next/image';
 import { projects } from '@/contents/projects'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
@@ -69,13 +69,16 @@ export default function Projects() {
             >
               {/* Project Image */}
               <div className="relative aspect-video mb-4 rounded-lg overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={`object-cover w-full h-64 transition-transform duration-300 hover:scale-105
-                    ${activeIndex === index ? 'brightness-90' : ''}
-                  `}
-                />
+              <Image
+  src={project.image}
+  alt={project.title}
+  width={800} // ইমেজের আসল width সেট করুন
+  height={450} // ইমেজের আসল height সেট করুন (অ্যাসপেক্ট রেশিও মেইন্টেন করুন)
+  className={`object-cover w-full h-64 transition-transform duration-300 hover:scale-105 ${
+    activeIndex === index ? 'brightness-90' : ''
+  }`}
+  unoptimized={true} // যেহেতু আপনি static export করছেন
+/>
               </div>
 
               {/* Title */}
