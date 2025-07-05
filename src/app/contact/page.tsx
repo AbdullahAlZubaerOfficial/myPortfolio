@@ -27,13 +27,13 @@ const slideFromLeft : Variants = {
   }
 }
 
-const slideFromRight = {
+const slideFromRight : Variants = {
   initial: { x: 120, opacity: 0 },
   animate: {
     x: 0,
     opacity: 1,
     transition: {
-      type: 'spring',
+      type: "spring", 
       stiffness: 30,
       damping: 20,
       duration: 2
