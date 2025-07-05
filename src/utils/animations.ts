@@ -1,14 +1,15 @@
-// Fade In Up
+// Fade In Up Animation
 export const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.6,
-    },
+    transition: { duration: 0.6 },
   },
 }
+
+
+
 
 // Fade In Down
 export const fadeInDown = {
@@ -81,14 +82,23 @@ export const slideIn = {
   },
 }
 
-// Staggered Animation for Children
+// // Staggered Animation for Children
+// export const staggerContainer = {
+//   hidden: {},
+//   show: {
+//     transition: {
+//       staggerChildren: 0.3,
+//       delayChildren: 0.2,
+//     },
+//   },
+// }
+
+// Stagger Children Animation
 export const staggerContainer = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.3,
-      delayChildren: 0.2,
+      staggerChildren: 0.2,
     },
   },
 }
-
