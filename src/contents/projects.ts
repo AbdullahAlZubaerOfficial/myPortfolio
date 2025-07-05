@@ -31,7 +31,7 @@ export const projects: Project[] = [
         description: 'My personal portfolio website showcasing my projects and skills.',
         technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
         githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
+        demoLink: 'https://beamish-madeleine-ca7545.netlify.app/',
         image: '/projects/portfolio-website.jpg',
       },
       {

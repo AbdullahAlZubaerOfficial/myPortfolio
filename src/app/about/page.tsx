@@ -423,6 +423,8 @@ export default function About() {
             </motion.div>
           </motion.section>
         </div>
+
+        
       </div>
     </div>
   )

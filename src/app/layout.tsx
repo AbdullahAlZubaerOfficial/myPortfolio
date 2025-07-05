@@ -30,12 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-white transition-colors dark:bg-gray-900 dark:text-white text-base sm:text-[15px] md:text-[16px] lg:text-[17px]">
+      <body className="bg-white transition-colors dark:bg-gray-900 dark:text-white">
         <ThemeProvider>
           <Navbar />
-          <main className="min-h-screen pt-20 sm:pt-24 px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32">
-            {children}
-          </main>
+          <main className="min-h-screen pt-24">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

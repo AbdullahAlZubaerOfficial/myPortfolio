@@ -25,9 +25,26 @@ export default function Navbar() {
     <nav className="fixed w-full bg-white/80 dark:bg-dark/80 backdrop-blur-sm z-50">
       <div className="container max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold text-primary">
-            Zubaer&trade;
-          </Link>
+          {/* Mobile Menu Button - Moved before the logo */}
+          <motion.button
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            onClick={toggleMobileMenu}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            {isMobileMenuOpen ? (
+              <XMarkIcon className="h-6 w-6" />
+            ) : (
+              <Bars3Icon className="h-6 w-6" />
+            )}
+          </motion.button>
+          
+          {/* Logo - Now centered on mobile */}
+          <div className="flex-1 flex justify-center md:justify-start">
+            <Link href="/" className="text-xl font-bold text-primary">
+              Zubaer&trade;
+            </Link>
+          </div>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
@@ -54,19 +71,8 @@ export default function Navbar() {
             </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            onClick={toggleMobileMenu}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            {isMobileMenuOpen ? (
-              <XMarkIcon className="h-6 w-6" />
-            ) : (
-              <Bars3Icon className="h-6 w-6" />
-            )}
-          </motion.button>
+          {/* This empty div balances the flex layout on mobile */}
+          <div className="md:hidden w-10"></div>
         </div>
 
         {/* Mobile Menu */}
@@ -128,4 +134,4 @@ export default function Navbar() {
       </div>
     </nav>
   )
-} 
+}
