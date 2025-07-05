@@ -3,11 +3,11 @@
 import Image from 'next/image';
 import { projects } from '@/contents/projects'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import { motion,Variants,easeInOut } from 'framer-motion'
+import { motion, Variants, easeInOut } from 'framer-motion'
 import { staggerContainer } from '@/utils/animations'
 import { useState } from 'react'
 
-const slideDownLoop:Variants = {
+const slideDownLoop: Variants = {
   hidden: { y: -20, opacity: 1 },
   show: {
     y: [-20, 20, -20],
@@ -15,18 +15,17 @@ const slideDownLoop:Variants = {
     transition: {
       repeat: Infinity,
       duration: 8,
-      ease:easeInOut,
+      ease: easeInOut,
     },
   },
 }
 
 export default function Projects() {
-  const [activeIndex, setActiveIndex] = useState(null)
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (
     <section className="py-20">
       <div className="container max-w-7xl mx-auto px-4">
-
         {/* Section Title */}
         <motion.h2
           className="text-3xl font-bold mb-12 text-center"
@@ -58,7 +57,7 @@ export default function Projects() {
               transition={{
                 repeat: Infinity,
                 duration: 8,
-                ease: 'easeInOut',
+                ease: easeInOut,
                 delay: index * 0.5,
               }}
               whileHover={{ scale: 1.03 }}
@@ -69,16 +68,16 @@ export default function Projects() {
             >
               {/* Project Image */}
               <div className="relative aspect-video mb-4 rounded-lg overflow-hidden">
-              <Image
-  src={project.image}
-  alt={project.title}
-  width={800} // ইমেজের আসল width সেট করুন
-  height={450} // ইমেজের আসল height সেট করুন (অ্যাসপেক্ট রেশিও মেইন্টেন করুন)
-  className={`object-cover w-full h-64 transition-transform duration-300 hover:scale-105 ${
-    activeIndex === index ? 'brightness-90' : ''
-  }`}
-  unoptimized={true} // যেহেতু আপনি static export করছেন
-/>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={800}
+                  height={450}
+                  className={`object-cover w-full h-64 transition-transform duration-300 hover:scale-105 ${
+                    activeIndex === index ? 'brightness-90' : ''
+                  }`}
+                  unoptimized={true}
+                />
               </div>
 
               {/* Title */}
