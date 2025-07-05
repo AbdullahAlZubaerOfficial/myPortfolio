@@ -23,7 +23,7 @@ import {
   fadeInDown,
   fadeIn,
   staggerContainer,
-  cardHover,
+  
   cardHoverSmall,
 } from '@/utils/animations'
 
@@ -172,7 +172,7 @@ export default function About() {
         <motion.h2
           className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white"
           variants={fadeInUp}
-           animate="visible"
+         animate="visible"
         >
           Skills
         </motion.h2>
@@ -181,7 +181,7 @@ export default function About() {
       <motion.div
   className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8"
   variants={staggerContainer}
-  initial="hidden"
+  
   animate="visible"
 >
   {/* Frontend Card */}
@@ -273,12 +273,14 @@ export default function About() {
       <motion.div
         className="max-w-3xl mx-auto p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md"
         initial={{ opacity: 0, scale: 0.95 }}
+        
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
         {...cardHoverSmall} // contains whileHover and transition
       >
       
          <Image
         src="/achievement1.jpg"
+       
         alt="Our Achievement"
         width={500}
         height={300}

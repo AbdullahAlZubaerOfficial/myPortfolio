@@ -26,6 +26,7 @@ export default function Projects() {
   return (
     <section className="py-20">
       <div className="container max-w-7xl mx-auto px-4">
+
         {/* Section Title */}
         <motion.h2
           className="text-3xl font-bold mb-12 text-center"
