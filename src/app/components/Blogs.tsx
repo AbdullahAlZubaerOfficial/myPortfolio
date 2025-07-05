@@ -12,7 +12,7 @@ export default function Blogs() {
       <div className="container max-w-7xl mx-auto px-4">
         <motion.h2 
           className="text-3xl font-bold mb-12 text-center"
-          {...fadeInUp}
+         variants={fadeInUp}
         >
           Latest Blog Posts
         </motion.h2>

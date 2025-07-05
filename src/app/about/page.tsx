@@ -46,6 +46,7 @@ export default function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
 
+  // Rotating animation for skills circle
   useEffect(() => {
     controls.start({
       rotate: 360,
@@ -57,20 +58,24 @@ export default function About() {
     })
   }, [controls])
 
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible")
-    }
-  }, [isInView, controls])
-
   return (
     <div className="container max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <motion.h1 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white" {...fadeInDown}>
+      <motion.h1
+        className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white"
+        variants={fadeInDown}
+        initial="hidden"
+        animate="show"
+      >
         About Me
       </motion.h1>
 
       {/* Bio Section */}
-      <motion.section className="mb-16" {...fadeInUp}>
+      <motion.section
+        className="mb-16"
+        variants={fadeInUp}
+        initial="hidden"
+        animate="show"
+      >
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-center">
           I&apos;m a passionate Full Stack Developer with expertise in building modern web applications.
           With a strong foundation in both frontend and backend technologies, I create seamless
@@ -79,15 +84,24 @@ export default function About() {
       </motion.section>
 
       {/* Rotating Skills Circle Section */}
-      <motion.section className="mb-16" {...fadeIn} transition={{ delay: 0.1 }}>
-        <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white" {...fadeInUp}>
+      <motion.section
+        className="mb-16"
+        variants={fadeIn}
+        initial="hidden"
+        animate="show"
+        transition={{ delay: 0.1 }}
+      >
+        <motion.h2
+          className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="show"
+        >
           Technical Expertise
         </motion.h2>
 
         <motion.div
           className="relative h-96 w-full flex items-center justify-center my-12"
-          initial="hidden"
-         
           animate={controls}
           style={{ originX: "50%", originY: "50%" }}
         >
@@ -113,27 +127,10 @@ export default function About() {
               <motion.div
                 key={name}
                 className="absolute h-12 w-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md cursor-pointer"
-                initial={{
-                  x: 0,
-                  y: 0,
-                  opacity: 0,
-                }}
-                animate={{
-                  x: Math.cos(radians) * radius,
-                  y: Math.sin(radians) * radius,
-                  opacity: 1,
-                }}
-                transition={{
-                  delay: index * 0.05,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 10,
-                }}
-                whileHover={{
-                  scale: 1.4,
-                  backgroundColor: "rgba(99, 102, 241, 0.9)",
-                  color: "white",
-                }}
+                initial={{ x: 0, y: 0, opacity: 0 }}
+                animate={{ x: Math.cos(radians) * radius, y: Math.sin(radians) * radius, opacity: 1 }}
+                transition={{ delay: index * 0.05, type: "spring", stiffness: 100, damping: 10 }}
+                whileHover={{ scale: 1.4, backgroundColor: "rgba(99, 102, 241, 0.9)", color: "white" }}
                 title={name}
                 style={{ originX: "50%", originY: "50%" }}
               >
@@ -145,8 +142,19 @@ export default function About() {
       </motion.section>
 
       {/* Skills Grid Section */}
-      <motion.section className="mb-16" {...fadeIn} transition={{ delay: 0.2 }}>
-        <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white" {...fadeInUp}>
+      <motion.section
+        className="mb-16"
+        variants={fadeIn}
+        initial="hidden"
+        animate="show"
+        transition={{ delay: 0.2 }}
+      >
+        <motion.h2
+          className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="show"
+        >
           Skills
         </motion.h2>
         <motion.div
@@ -193,7 +201,8 @@ export default function About() {
       <div ref={ref} className="flex flex-col md:flex-row gap-8">
         {/* Achievement Section */}
         <div className="flex-1">
-          <motion.section className="mb-16"
+          <motion.section
+            className="mb-16"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={{
@@ -201,14 +210,14 @@ export default function About() {
               visible: {
                 opacity: 1,
                 y: 0,
-                transition: {
-                  duration: 0.6,
-                  ease: "easeOut"
-                }
-              }
+                transition: { duration: 0.6, ease: "easeOut" },
+              },
             }}
           >
-            <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white" {...fadeInUp}>
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
+              variants={fadeInUp}
+            >
               Achievements
             </motion.h2>
             <motion.div
@@ -218,7 +227,11 @@ export default function About() {
               transition={{ delay: 0.2, duration: 0.5 }}
               {...cardHoverSmall}
             >
-              <img src="/achievement1.jpg" alt="Achievement" className="mb-4 rounded-md w-full h-auto" />
+              <img
+                src="/achievement1.jpg"
+                alt="Achievement"
+                className="mb-4 rounded-md w-full h-auto"
+              />
               <p className="text-gray-600 dark:text-gray-300 text-center">
                 <span className="font-semibold">Certificate of achievement</span>: The{" "}
                 <span className="text-blue-600 dark:text-blue-400 font-semibold">certificate</span> is proudly awarded to{" "}
@@ -230,8 +243,7 @@ export default function About() {
                 <span className="text-indigo-600 dark:text-indigo-400 font-semibold">passion</span>,{" "}
                 <span className="text-teal-600 dark:text-teal-400 font-semibold">commitment</span>, and{" "}
                 <span className="text-orange-500 dark:text-orange-400 font-semibold">impact</span>. We are proud to celebrate your success. Presented by Programming Hero Team.
-                <br />
-                <br />
+                <br /><br />
                 <span className="italic text-gray-500 dark:text-gray-400">
                   This certificate is awarded to those who have been{" "}
                   <span className="text-green-700 dark:text-green-300 font-semibold">hired</span> or work in the{" "}
@@ -243,25 +255,22 @@ export default function About() {
           </motion.section>
         </div>
 
+        {/* Experience & Education */}
         <div className="flex-1">
           {/* Experience Section */}
-          <motion.section className="mb-16"
+          <motion.section
+            className="mb-16"
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={{
               hidden: { opacity: 0, y: 20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.6,
-                  ease: "easeOut",
-                  delay: 0.1
-                }
-              }
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.1 } },
             }}
           >
-            <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white" {...fadeInUp}>
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
+              variants={fadeInUp}
+            >
               Experience
             </motion.h2>
             <motion.div
@@ -270,42 +279,59 @@ export default function About() {
               initial="initial"
               animate={isInView ? "animate" : "initial"}
             >
-              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+              <motion.div
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+                variants={fadeInUp}
+                {...cardHoverSmall}
+              >
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Frontend Developer</h3>
                 <p className="text-primary mb-2">InnoBugz Solutions • 2025</p>
                 <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
-                   <li>🚀 Led development of multiple web applications using React and Node.js</li>
-<li>⚙️ Implemented CI/CD pipelines reducing deployment time by 50%</li>
+                  <li>🚀 Led development of multiple web applications using React and Node.js</li>
+                  <li>⚙️ Implemented CI/CD pipelines reducing deployment time by 50%</li>
                 </ul>
               </motion.div>
 
-              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+              <motion.div
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+                variants={fadeInUp}
+                {...cardHoverSmall}
+              >
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Full Stack Developer</h3>
                 <p className="text-primary mb-2">Own Project Work - 2024</p>
                 <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
-                   <li>🔧 Developed and maintained RESTful APIs</li> 
-<li>💻 Built responsive user interfaces with modern JavaScript frameworks</li> 
-<li>⚡ Optimized database queries improving performance by 40%</li>
+                  <li>🔧 Developed and maintained RESTful APIs</li>
+                  <li>💻 Built responsive user interfaces with modern JavaScript frameworks</li>
+                  <li>⚡ Optimized database queries improving performance by 40%</li>
                 </ul>
               </motion.div>
-              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+
+              <motion.div
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+                variants={fadeInUp}
+                {...cardHoverSmall}
+              >
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Web Development Completed (Batch 9)</h3>
                 <p className="text-primary mb-2">Programming Hero</p>
                 <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
-                    <li>🖥️ Developed full-stack apps using MERN (MongoDB, Express.js, React.js, Node.js)</li> 
-<li>🔐 Handled authentication with Firebase & JWT</li> 
-<li>🌐 Built REST APIs and responsive UIs with Tailwind CSS</li>
-
+                  <li>🖥️ Developed full-stack apps using MERN (MongoDB, Express.js, React.js, Node.js)</li>
+                  <li>🔐 Handled authentication with Firebase & JWT</li>
+                  <li>🌐 Built REST APIs and responsive UIs with Tailwind CSS</li>
                 </ul>
               </motion.div>
-              <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHoverSmall}>
+
+              <motion.div
+                className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+                variants={fadeInUp}
+                {...cardHoverSmall}
+              >
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Data Structures and Algorithms and ML (Batch 7)</h3>
                 <p className="text-primary mb-2">Phitron</p>
                 <ul className="text-gray-600 dark:text-gray-300 list-disc list-inside space-y-2">
                   <li>Gained solid understanding of C and C++, including procedural and object-oriented concepts 💡</li>
-  <li>Mastered data structures and algorithms (DSA) with C++: linked list, queue, tree, graph, recursion, sorting, and searching 🔍🌲</li>
-  <li>Developed strong problem-solving skills through regular assignments and contests 💪🧠</li>
-  <li>Currently learning Machine Learning fundamentals using Python and relevant libraries 🤖📊</li>
+                  <li>Mastered data structures and algorithms (DSA) with C++: linked list, queue, tree, graph, recursion, sorting, and searching 🔍🌲</li>
+                  <li>Developed strong problem-solving skills through regular assignments and contests 💪🧠</li>
+                  <li>Currently learning Machine Learning fundamentals using Python and relevant libraries 🤖📊</li>
                 </ul>
               </motion.div>
             </motion.div>
@@ -317,18 +343,13 @@ export default function About() {
             animate={isInView ? "visible" : "hidden"}
             variants={{
               hidden: { opacity: 0, y: 20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.6,
-                  ease: "easeOut",
-                  delay: 0.2
-                }
-              }
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.2 } },
             }}
           >
-            <motion.h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white" {...fadeInUp}>
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
+              variants={fadeInUp}
+            >
               Education
             </motion.h2>
             <motion.div className="max-w-3xl mx-auto" variants={staggerContainer} initial="initial" animate={isInView ? "animate" : "initial"}>
