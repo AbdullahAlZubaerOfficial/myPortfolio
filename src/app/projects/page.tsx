@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { projects } from '@/contents/projects'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
@@ -41,7 +42,7 @@ export default function Projects() {
             transition={{ type: 'spring', stiffness: 200 }}
           >
             <div className="aspect-video bg-gray-200 dark:bg-gray-800 overflow-hidden">
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
                 className="object-cover w-full h-full"

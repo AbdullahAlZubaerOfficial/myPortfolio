@@ -1,5 +1,6 @@
 'use client'
 
+
 import { projects } from '@/contents/projects'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
