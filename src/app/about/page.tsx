@@ -17,7 +17,7 @@ import {
   SiCircleci,
 } from 'react-icons/si'
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import {
   fadeInUp,
   fadeInDown,
@@ -72,7 +72,7 @@ export default function About() {
         className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white"
         variants={fadeInDown}
         initial="hidden"
-        animate="show"
+        animate="visible"
       >
         About Me
       </motion.h1>
@@ -81,8 +81,8 @@ export default function About() {
       <motion.section
         className="mb-16"
         variants={fadeInUp}
-        initial="hidden"
-        animate="show"
+      
+        animate="visible"
       >
         <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-center">
           I&apos;m a passionate Full Stack Developer with expertise in building modern web applications.
@@ -92,18 +92,18 @@ export default function About() {
       </motion.section>
 
       {/* Rotating Skills Circle Section */}
-      <motion.section
+       <motion.section
         className="mb-16"
         variants={fadeIn}
         initial="hidden"
-        animate="show"
+        animate="visible"
         transition={{ delay: 0.1 }}
       >
         <motion.h2
           className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white"
           variants={fadeInUp}
-          initial="hidden"
-          animate="show"
+          animate="visible"
+          
         >
           Technical Expertise
         </motion.h2>
@@ -127,24 +127,36 @@ export default function About() {
 
           {/* Icons around the circle */}
           {skills.map(({ name, Icon, color }, index) => {
-            const angle = (index * 360) / skills.length
-            const radians = (angle * Math.PI) / 180
-            const radius = 150
+            const angle = (index * 360) / skills.length;
+            const radians = (angle * Math.PI) / 180;
+            const radius = 150;
 
             return (
               <motion.div
                 key={name}
                 className="absolute h-12 w-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 shadow-md cursor-pointer"
                 initial={{ x: 0, y: 0, opacity: 0 }}
-                animate={{ x: Math.cos(radians) * radius, y: Math.sin(radians) * radius, opacity: 1 }}
-                transition={{ delay: index * 0.05, type: "spring", stiffness: 100, damping: 10 }}
-                whileHover={{ scale: 1.4, backgroundColor: "rgba(99, 102, 241, 0.9)", color: "white" }}
+                animate={{ 
+                  x: Math.cos(radians) * radius, 
+                  y: Math.sin(radians) * radius, 
+                  opacity: 1 
+                }}
+                transition={{ 
+                  delay: index * 0.05, 
+                  type: "spring", 
+                  stiffness: 100, 
+                  damping: 10 
+                }}
+                whileHover={{ 
+                  scale: 1.4, 
+                  backgroundColor: "rgba(99, 102, 241, 0.9)", 
+                  color: "white" 
+                }}
                 title={name}
-                style={{ originX: "50%", originY: "50%" }}
               >
                 <Icon className="h-7 w-7" color={color} />
               </motion.div>
-            )
+            );
           })}
         </motion.div>
       </motion.section>
@@ -154,57 +166,84 @@ export default function About() {
         className="mb-16"
         variants={fadeIn}
         initial="hidden"
-        animate="show"
+        animate="visible"
         transition={{ delay: 0.2 }}
       >
         <motion.h2
           className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white"
           variants={fadeInUp}
-          initial="hidden"
-          animate="show"
+           animate="visible"
         >
           Skills
         </motion.h2>
-        <motion.div
-          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={staggerContainer}
-          initial="initial"
-          animate="animate"
-        >
-          <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
-            <FaCode className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Frontend</h3>
-            <ul className="text-gray-600 dark:text-gray-300 space-y-2">
-              <li>React / Next.js</li>
-              <li>TypeScript</li>
-              <li>Tailwind CSS</li>
-              <li>HTML5 / CSS3</li>
-            </ul>
-          </motion.div>
+        
 
-          <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
-            <FaLaptopCode className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Backend</h3>
-            <ul className="text-gray-600 dark:text-gray-300 space-y-2">
-              <li>Node.js</li>
-              <li>Express</li>
-              <li>PostgreSQL</li>
-              <li>MongoDB</li>
-            </ul>
-          </motion.div>
+      <motion.div
+  className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8"
+  variants={staggerContainer}
+  initial="hidden"
+  animate="visible"
+>
+  {/* Frontend Card */}
+  <motion.div 
+    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+    variants={fadeInUp}
+    whileHover={{ scale: 1.05 }}
+    transition={{ type: "spring", stiffness: 300 }}
+    animate="visible"
+  >
+    <FaCode className="h-8 w-8 text-primary mb-4" />
+    <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Frontend</h3>
+    <ul className="text-gray-600 dark:text-gray-300 space-y-2">
+      <li>React / Next.js</li>
+      <li>TypeScript</li>
+      <li>Tailwind CSS</li>
+      <li>HTML5 / CSS3</li>
+    </ul>
+  </motion.div>
 
-          <motion.div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" variants={fadeInUp} {...cardHover}>
-            <FaGraduationCap className="h-8 w-8 text-primary mb-4" />
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Tools & Others</h3>
-            <ul className="text-gray-600 dark:text-gray-300 space-y-2">
-              <li>Git / GitHub</li>
-              <li>Docker</li>
-              <li>AWS</li>
-              <li>CI/CD</li>
-            </ul>
-          </motion.div>
-        </motion.div>
+  {/* Backend Card */}
+  <motion.div 
+    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+    variants={fadeInUp}
+    whileHover={{ scale: 1.05 }}
+    transition={{ type: "spring", stiffness: 300 }}
+    animate="visible"
+  >
+    <FaLaptopCode className="h-8 w-8 text-primary mb-4" />
+    <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Backend</h3>
+    <ul className="text-gray-600 dark:text-gray-300 space-y-2">
+      <li>Node.js</li>
+      <li>Express</li>
+      <li>PostgreSQL</li>
+      <li>MongoDB</li>
+    </ul>
+  </motion.div>
+
+  {/* Tools & Others Card */}
+  <motion.div 
+    className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+    variants={fadeInUp}
+    whileHover={{ scale: 1.05 }}
+    transition={{ type: "spring", stiffness: 300 }}
+    animate="visible"
+  >
+    <FaGraduationCap className="h-8 w-8 text-primary mb-4" />
+    <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Tools & Others</h3>
+    <ul className="text-gray-600 dark:text-gray-300 space-y-2">
+      <li>Git / GitHub</li>
+      <li>Docker</li>
+      <li>AWS</li>
+      <li>CI/CD</li>
+    </ul>
+  </motion.div>
+</motion.div>
+
+        
       </motion.section>
+
+      {/* Skills Grid Section */}
+    
 
       <div ref={ref} className="flex flex-col md:flex-row gap-8">
         {/* Achievement Section */}
@@ -212,6 +251,7 @@ export default function About() {
           <motion.section
       className="mb-16"
       initial="hidden"
+      
       animate={isInView ? 'visible' : 'hidden'}
       variants={{
         hidden: { opacity: 0, y: 20 },
@@ -225,6 +265,7 @@ export default function About() {
       <motion.h2
         className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
         variants={fadeInUp}
+        animate="visible"
       >
         Achievements
       </motion.h2>
@@ -285,6 +326,7 @@ export default function About() {
             <motion.h2
               className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
               variants={fadeInUp}
+              animate="visible"
             >
               Experience
             </motion.h2>
@@ -364,6 +406,7 @@ export default function About() {
             <motion.h2
               className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
               variants={fadeInUp}
+              animate="visible"
             >
               Education
             </motion.h2>
