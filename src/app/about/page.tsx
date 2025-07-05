@@ -16,7 +16,7 @@ import {
   SiCircleci,
 } from 'react-icons/si'
 import { motion, useAnimation, useInView } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   fadeInUp,
   fadeInDown,
@@ -25,6 +25,10 @@ import {
   cardHover,
   cardHoverSmall,
 } from '@/utils/animations'
+
+// import Image from 'next/image'
+
+
 
 const skills = [
   { name: "React", Icon: SiReact, color: "#61DAFB" },
@@ -57,6 +61,9 @@ export default function About() {
       },
     })
   }, [controls])
+
+
+
 
   return (
     <div className="container max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -202,57 +209,61 @@ export default function About() {
         {/* Achievement Section */}
         <div className="flex-1">
           <motion.section
-            className="mb-16"
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.6, ease: "easeOut" },
-              },
-            }}
-          >
-            <motion.h2
-              className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
-              variants={fadeInUp}
-            >
-              Achievements
-            </motion.h2>
-            <motion.div
-              className="max-w-3xl mx-auto p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              {...cardHoverSmall}
-            >
-              <img
-                src="/achievement1.jpg"
-                alt="Achievement"
-                className="mb-4 rounded-md w-full h-auto"
-              />
-              <p className="text-gray-600 dark:text-gray-300 text-center">
-                <span className="font-semibold">Certificate of achievement</span>: The{" "}
-                <span className="text-blue-600 dark:text-blue-400 font-semibold">certificate</span> is proudly awarded to{" "}
-                <span className="text-purple-600 dark:text-purple-400 font-semibold">Abdullah Al Zubaer</span> for stepping into the{" "}
-                <span className="text-green-600 dark:text-green-400 font-semibold">tech industry</span> as a proud member of the{" "}
-                <span className="text-yellow-500 dark:text-yellow-400 font-semibold">Programming Hero Association</span>. Your journey from{" "}
-                <span className="text-pink-600 dark:text-pink-400 font-semibold">learner</span> to{" "}
-                <span className="text-red-600 dark:text-red-400 font-semibold">professional</span> reflects{" "}
-                <span className="text-indigo-600 dark:text-indigo-400 font-semibold">passion</span>,{" "}
-                <span className="text-teal-600 dark:text-teal-400 font-semibold">commitment</span>, and{" "}
-                <span className="text-orange-500 dark:text-orange-400 font-semibold">impact</span>. We are proud to celebrate your success. Presented by Programming Hero Team.
-                <br /><br />
-                <span className="italic text-gray-500 dark:text-gray-400">
-                  This certificate is awarded to those who have been{" "}
-                  <span className="text-green-700 dark:text-green-300 font-semibold">hired</span> or work in the{" "}
-                  <span className="text-blue-700 dark:text-blue-300 font-semibold">freelance market</span> as a{" "}
-                  <span className="text-red-700 dark:text-red-300 font-semibold">professional</span>.
-                </span>
-              </p>
-            </motion.div>
-          </motion.section>
+      className="mb-16"
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6, ease: 'easeOut' },
+        },
+      }}
+    >
+      <motion.h2
+        className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 dark:text-white"
+        variants={fadeInUp}
+      >
+        Achievements
+      </motion.h2>
+
+      <motion.div
+        className="max-w-3xl mx-auto p-6 rounded-lg bg-white dark:bg-gray-800 shadow-md"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        {...cardHoverSmall} // contains whileHover and transition
+      >
+        <div className="relative w-full h-64 mb-4 rounded-md overflow-hidden">
+       <img
+      src="/achievement1.jpg"
+      alt='Achievement'
+      className="rounded-md w-[500px] h-[500px] pb-[100px]"
+    />
+        </div>
+
+        <p className="text-gray-600 dark:text-gray-300 text-center">
+          <span className="font-semibold">Certificate of achievement</span>: The{' '}
+          <span className="text-blue-600 dark:text-blue-400 font-semibold">certificate</span> is proudly awarded to{' '}
+          <span className="text-purple-600 dark:text-purple-400 font-semibold">Abdullah Al Zubaer</span> for stepping into the{' '}
+          <span className="text-green-600 dark:text-green-400 font-semibold">tech industry</span> as a proud member of the{' '}
+          <span className="text-yellow-500 dark:text-yellow-400 font-semibold">Programming Hero Association</span>. Your journey from{' '}
+          <span className="text-pink-600 dark:text-pink-400 font-semibold">learner</span> to{' '}
+          <span className="text-red-600 dark:text-red-400 font-semibold">professional</span> reflects{' '}
+          <span className="text-indigo-600 dark:text-indigo-400 font-semibold">passion</span>,{' '}
+          <span className="text-teal-600 dark:text-teal-400 font-semibold">commitment</span>, and{' '}
+          <span className="text-orange-500 dark:text-orange-400 font-semibold">impact</span>. We are proud to celebrate your success. Presented by Programming Hero Team.
+          <br />
+          <br />
+          <span className="italic text-gray-500 dark:text-gray-400">
+            This certificate is awarded to those who have been{' '}
+            <span className="text-green-700 dark:text-green-300 font-semibold">hired</span> or work in the{' '}
+            <span className="text-blue-700 dark:text-blue-300 font-semibold">freelance market</span> as a{' '}
+            <span className="text-red-700 dark:text-red-300 font-semibold">professional</span>.
+          </span>
+        </p>
+      </motion.div>
+    </motion.section>
         </div>
 
         {/* Experience & Education */}
