@@ -22,7 +22,7 @@ export const projects: Project[] = [
         title: 'Task Management App',
         description: 'A collaborative task management application with real-time updates.',
         technologies: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-        githubLink: 'https://github.com',
+        githubLink: 'https://github.com/AbdullahAlZubaerOfficial/lms',
         demoLink: 'https://www.meistertask.com/',
         image: '/projects/task-manager.webp',
       },
@@ -30,33 +30,34 @@ export const projects: Project[] = [
         title: 'Portfolio Website',
         description: 'My personal portfolio website showcasing my projects and skills.',
         technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-        githubLink: 'https://github.com',
+        githubLink: 'https://github.com/AbdullahAlZubaerOfficial/lms',
         demoLink: 'https://my-portfolio-dtgx.vercel.app/',
         image: '/projects/portfolio-website.jpg',
       },
-      {
-        title: 'Blog Platform',
-        description: 'A blogging platform with user authentication and markdown support.',
-        technologies: ['Gatsby', 'GraphQL', 'Contentful'],
-        githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
-        image: '/projects/blog-website.jpeg',
-      },
-      {
+        {
         title: 'Weather App',
         description: 'A weather application that provides real-time weather updates.',
         technologies: ['React', 'OpenWeatherMap API'],
-        githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
+        githubLink: 'https://github.com/AbdullahAlZubaerOfficial/Weather',
+        demoLink: 'https://abdullahalzubaerofficial.github.io/Weather/',
         image: '/projects/weather-app.png',
       },
+      {
+        title: 'Blog Platform',
+        description: 'https://lms-iwqx.vercel.app/',
+        technologies: ['Gatsby', 'GraphQL', 'Contentful'],
+        githubLink: 'https://github.com/AbdullahAlZubaerOfficial/lms',
+        demoLink: 'https://bistro-boss-f9cc6.web.app/',
+        image: '/projects/blog-website.jpeg',
+      },
+    
     
       {
         title: 'Recipe Finder',
         description: 'A recipe search application using the Edamam API.',
         technologies: ['React', 'Edamam API'],
         githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
+        demoLink: 'https://bistro-boss-f9cc6.web.app/',
         image: '/projects/recipe-finder.png',
       },
       {
@@ -64,7 +65,7 @@ export const projects: Project[] = [
         description: 'A personal finance tracker to manage expenses and income.',
         technologies: ['React', 'Firebase'],
         githubLink: 'https://github.com',
-        demoLink: 'https://demo.com',
+        demoLink: 'https://bistro-boss-f9cc6.web.app/',
         image: '/projects/expense-tracker.webp',
       }
   ];
